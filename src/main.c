@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "pi_2_dht_read.h"
+
+#if defined(rpi)
+#  include "rpi/pi_dht_read.h"
+#  define PHT_READ pi_dht_read
+#elif defined(rpi2) || defined(rpi3)
+#  include "rpi2/pi_2_dht_read.h"
+#  define PHT_READ pi_2_dht_read
+#endif
 
 static int parse_argv(int argc, char **argv, int *sensor, int *pin) {
     if (argc != 3) {
@@ -34,11 +41,10 @@ int main(int argc, char **argv) {
     result = parse_argv(argc, argv, &sensor, &pin);
     if (result != 0) return -1;
 
-    result = pi_2_dht_read(sensor, pin, &humidity, &temperature);
+    result = PHT_READ(sensor, pin, &humidity, &temperature);
     if (result != 0) fprintf(stderr, "read error\n");
 
     printf("%f %f\n", humidity, temperature);
 
     return result;
 }
-

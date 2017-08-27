@@ -26,6 +26,7 @@ endif
 DEFAULT_TARGETS ?= priv priv/dht
 
 # Rasperry Platfrom
+CFLAGS := $(CFLAGS) -D$(MIX_TARGET)
 ifeq ($(MIX_TARGET),rpi)
 SRC = $(wildcard src/*.c src/rpi/*.c)
 endif
