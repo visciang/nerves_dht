@@ -7,8 +7,9 @@
 
 # Initialize some variables if not set
 LDFLAGS ?=
-CFLAGS ?= -std=gnu99 -O2 -Wall
 CC ?= $(CROSSCOMPILE)-gcc
+
+CFLAGS := $(CFLAGS) -std=gnu99 -O2 -Wall
 
 # Check that we're on a supported build platform
 ifeq ($(CROSSCOMPILE),)
