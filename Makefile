@@ -25,8 +25,18 @@ endif
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
+# Rasperry Platfrom
+ifeq ($(MIX_TARGET),rpi)
+SRC = $(wildcard src/*.c src/rpi/*.c)
+endif
+ifeq ($(MIX_TARGET),rpi2)
+SRC = $(wildcard src/*.c src/rpi2/*.c)
+endif
+ifeq ($(MIX_TARGET),rpi3)
+SRC = $(wildcard src/*.c src/rpi2/*.c)
+endif
+SRC ?=
 
-SRC=$(wildcard src/*.c)
 OBJ=$(SRC:.c=.o)
 
 .PHONY: all clean

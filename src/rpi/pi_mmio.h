@@ -1,5 +1,6 @@
 // Copyright (c) 2014 Adafruit Industries
 // Author: Tony DiCola
+// Based on code from Gert van Loo & Dom: http://elinux.org/RPi_Low-level_peripherals#GPIO_Code_examples
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,15 +19,43 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-#ifndef PI_2_DHT_READ_H
-#define PI_2_DHT_READ_H
 
-#include "common_dht_read.h"
+// Simple fast memory-mapped GPIO library for the Raspberry Pi.
+#ifndef PI_MMIO_H
+#define PI_MMIO_H
 
-// Read DHT sensor connected to GPIO pin (using BCM numbering).  Humidity and temperature will be 
-// returned in the provided parameters. If a successfull reading could be made a value of 0 
-// (DHT_SUCCESS) will be returned.  If there was an error reading the sensor a negative value will
-// be returned.  Some errors can be ignored and retried, specifically DHT_ERROR_TIMEOUT or DHT_ERROR_CHECKSUM.
-int pi_2_dht_read(int sensor, int pin, float* humidity, float* temperature);
+#include <stdint.h>
+
+#define MMIO_SUCCESS 0
+#define MMIO_ERROR_DEVMEM -1
+#define MMIO_ERROR_MMAP -2
+
+extern volatile uint32_t* pi_mmio_gpio;
+
+int pi_mmio_init(void);
+
+static inline void pi_mmio_set_input(const int gpio_number) {
+  // Set GPIO register to 000 for specified GPIO number.
+  *(pi_mmio_gpio+((gpio_number)/10)) &= ~(7<<(((gpio_number)%10)*3));
+}
+
+static inline void pi_mmio_set_output(const int gpio_number) {
+  // First set to 000 using input function.
+  pi_mmio_set_input(gpio_number);
+  // Next set bit 0 to 1 to set output.
+  *(pi_mmio_gpio+((gpio_number)/10)) |=  (1<<(((gpio_number)%10)*3));
+}
+
+static inline void pi_mmio_set_high(const int gpio_number) {
+  *(pi_mmio_gpio+7) = 1 << gpio_number;
+}
+
+static inline void pi_mmio_set_low(const int gpio_number) {
+  *(pi_mmio_gpio+10) = 1 << gpio_number;
+}
+
+static inline uint32_t pi_mmio_input(const int gpio_number) {
+  return *(pi_mmio_gpio+13) & (1 << gpio_number);
+}
 
 #endif
