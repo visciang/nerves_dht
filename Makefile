@@ -12,15 +12,15 @@ CC ?= $(CROSSCOMPILE)-gcc
 
 # Check that we're on a supported build platform
 ifeq ($(CROSSCOMPILE),)
-    # Not crosscompiling, so check that we're on Linux.
-    ifneq ($(shell uname -s),Linux)
-        $(warning dht only works on Linux on a Raspberry Pi. Crosscompilation)
-        $(warning is supported by defining at least $$CROSSCOMPILE. See Makefile for)
-        $(warning details. If using Nerves, this should be done automatically.)
-        $(warning .)
-        $(warning Skipping C compilation unless targets explicitly passed to make.)
-		DEFAULT_TARGETS = priv
-    endif
+# Not crosscompiling, so check that we're on Linux.
+ifneq ($(shell uname -s),Linux)
+$(warning dht only works on Linux on a Raspberry Pi. Crosscompilation)
+$(warning is supported by defining at least $$CROSSCOMPILE. See Makefile for)
+$(warning details. If using Nerves, this should be done automatically.)
+$(warning .)
+$(warning Skipping C compilation unless targets explicitly passed to make.)
+DEFAULT_TARGETS = priv
+endif
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
@@ -33,7 +33,7 @@ OBJ=$(SRC:.c=.o)
 all: $(DEFAULT_TARGETS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 priv:
 	mkdir -p priv

@@ -2,7 +2,12 @@
 /_build
 /db
 /deps
+/priv
 /*.ez
+
+# Ignore executable and object files
+/priv
+*.o
 
 # Nerves artifacts
 /_images
