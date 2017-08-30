@@ -7,8 +7,8 @@ If you want to build your project directly on a Raspberry (not in a crosscompili
 just export MIX_TARGET environment variable to you mix build.
 Valid values for MIX_TARGET are rpi | rp2 | rp3.
 
-Supported sensors: DHT11, DHT22, AM2302
-Supported boards: Raspberry 1 / 2 / 3
+* Supported sensors: DHT11, DHT22, AM2302
+* Supported boards: Raspberry 1 / 2 / 3
 
 Note: the library has no external dependencies and use a C executable to read the sensors data.
 
