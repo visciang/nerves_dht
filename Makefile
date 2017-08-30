@@ -25,7 +25,7 @@ endif
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
-ifeq ($(TRAVIS),1)
+ifeq ($(TRAVIS),true)
 $(warning TRAVIS build)
 DEFAULT_TARGETS = priv
 endif
