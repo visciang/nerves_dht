@@ -5,7 +5,6 @@
 /*.ez
 
 # Ignore executable and object files
-/priv
 *.o
 
 # Nerves artifacts
