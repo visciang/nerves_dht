@@ -17,7 +17,7 @@ defmodule Nerves.DHT do
   @type result :: {:ok, humidity :: float(), temperature :: float()} | {:error, reason}
 
   # executable name injection (tests use "dht_exe.sh" fake)
-  @dht_exe Application.get_env(:nerves_dht, :dht_exe)
+  @dht_exe Application.get_env(:nerves_dht, :dht_exe, "dht")
 
   @doc """
   Read DHT sensor values.
