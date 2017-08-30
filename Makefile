@@ -16,9 +16,9 @@ ifeq ($(CROSSCOMPILE),)
 # Not crosscompiling, so check that we're on Linux.
 ifneq ($(shell uname -s),Linux)
 $(warning dht only works on Linux on a Raspberry Pi. Crosscompilation)
-$(warning is supported by defining at least $$CROSSCOMPILE. See Makefile for)
-$(warning details. If using Nerves, this should be done automatically.)
-$(warning .)
+$(warning is supported by defining at least $$CROSSCOMPILE and $$MIX_TARGET.)
+$(warning See Makefile for details. If using Nerves, this should be done automatically.)
+$(warning )
 $(warning Skipping C compilation unless targets explicitly passed to make.)
 DEFAULT_TARGETS = priv
 endif

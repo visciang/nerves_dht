@@ -14,8 +14,8 @@ static int parse_argv(int argc, char **argv, int *sensor, int *pin) {
 usage:
         fprintf(stderr,
             "usage: prog <sensor> <pin>\n"
-            "  - sensor: 11 | 22 | 2302 for sensor model DHT11 | DHT22 | AM2302\n"
-            "  - pin: gpio pin number\n");
+            "  - sensor: dht11 | dht22 | am2302 for sensor model DHT11 | DHT22 | AM2302\n"
+            "  - pin: GPIO pin (using BCM numbering)\n");
         return -1;
     }
 

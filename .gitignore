@@ -2,7 +2,6 @@
 /_build
 /db
 /deps
-/priv
 /*.ez
 
 # Ignore executable and object files
