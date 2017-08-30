@@ -1,0 +1,15 @@
+# App artifacts
+/_build
+/db
+/deps
+/*.ez
+
+# Ignore executable and object files
+*.o
+
+# Nerves artifacts
+/_images
+/.nerves
+
+# Generate on crash by the VM
+erl_crash.dump
