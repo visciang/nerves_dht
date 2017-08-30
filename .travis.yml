@@ -1,5 +1,9 @@
 language: elixir
 
+env:
+  global:
+  - TRAVIS=true
+
 matrix:
   include:
     - otp_release: 19.0

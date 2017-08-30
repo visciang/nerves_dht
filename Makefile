@@ -25,6 +25,11 @@ endif
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
+ifeq ($(TRAVIS),1)
+$(warning TRAVIS build)
+DEFAULT_TARGETS = priv
+endif
+
 # Rasperry Platfrom
 CFLAGS := $(CFLAGS) -D$(MIX_TARGET)
 ifeq ($(MIX_TARGET),rpi)
