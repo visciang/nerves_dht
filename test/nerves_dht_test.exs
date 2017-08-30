@@ -12,7 +12,7 @@ defmodule Nerves.DHT.Test do
 
   test "read errors code" do
     Enum.each(
-      [{"-4", :gpio}, {"-3", :argument}, {"-2", :checksum}, {"-1", :timeout}],
+      [{"252", :gpio}, {"253", :argument}, {"254", :checksum}, {"255", :timeout}],
       fn ({exit_status, exit_reason}) ->
         set_sensor_response("", "", exit_status)
         assert {:error, ^exit_reason} = DHT.read(:dht11, 17, 0)
@@ -21,7 +21,7 @@ defmodule Nerves.DHT.Test do
   end
   
   test "read retry bad `retries` values" do
-    set_sensor_response("", "", "-1")
+    set_sensor_response("", "", "255")
     assert {:error, :timeout} = DHT.read(:dht11, 17, -1)
     check_call_counter(1)
   end
@@ -30,11 +30,11 @@ defmodule Nerves.DHT.Test do
     retries = 2
     interval = 0
 
-    set_sensor_response("", "", "-1")
+    set_sensor_response("", "", "255")
     assert {:error, :timeout} = DHT.read(:dht11, 17, retries, interval)
     check_call_counter(retries + 1)
 
-    set_sensor_response("", "", "-2")
+    set_sensor_response("", "", "254")
     assert {:error, :checksum} = DHT.read(:dht11, 17, retries, interval)
     check_call_counter(retries + 1)
   end
@@ -43,7 +43,7 @@ defmodule Nerves.DHT.Test do
     interval = 200
     retries = 3
 
-    set_sensor_response("", "", "-1")
+    set_sensor_response("", "", "255")
     start_time = System.monotonic_time(:milliseconds)
     assert {:error, :timeout} = DHT.read(:dht11, 17, retries, interval)
     end_time  = System.monotonic_time(:milliseconds)
