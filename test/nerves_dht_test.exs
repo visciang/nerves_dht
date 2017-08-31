@@ -1,7 +1,7 @@
-defmodule Nerves.DHT.Test do
+defmodule NervesDHT.Test do
   use ExUnit.Case, async: false
 
-  alias Nerves.DHT
+  alias NervesDHT, as: DHT
 
   @dht_call_count "/tmp/dht_call_count"
 
