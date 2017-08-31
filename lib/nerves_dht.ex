@@ -9,8 +9,10 @@ defmodule NervesDHT do
   @type pin :: 0..31
   @typedoc "Number of retries on transient errors"
   @type retries :: non_neg_integer
-  @typedoc "Delay between reading in [ms]"
-  @type delay :: pos_integer
+  @typedoc "Delay between reading retries in [ms]"
+  @type delay :: non_neg_integer
+  @typedoc "Streaming period in [ms]"
+  @type interval :: non_neg_integer
   @typedoc "Error reason"
   @type reason :: :timeout | :checksum | :argument | :gpio
   @typedoc "Successful reading humidity and temperature values"
@@ -69,6 +71,7 @@ defmodule NervesDHT do
       [{:ok, 55.1, 24.719}, {:ok, 55.12, 24.9}]
 
   """
+  @spec stream(sensor, pin, interval) :: Enumerable.t
   def stream(sensor, pin, interval \\ 2000) do
     Stream.interval(interval)
     |> Stream.map(fn(_) -> read(sensor, pin, 0, 0) end)
