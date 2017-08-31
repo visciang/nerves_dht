@@ -1,4 +1,4 @@
-defmodule Nerves.DHT do
+defmodule NervesDHT do
   @moduledoc """
   Elixir library to read the DHT series of humidity and temperature sensors on a Raspberry Pi.
   """
@@ -37,7 +37,7 @@ defmodule Nerves.DHT do
 
   ## Examples
 
-      iex> Nerves.DHT.read(:am2302, 17)
+      iex> NervesDHT.read(:am2302, 17)
       {:ok, 55.1, 24.719}
 
   """
@@ -65,7 +65,7 @@ defmodule Nerves.DHT do
 
   ## Examples
 
-      iex> Nerves.DHT.stream(:am2302, 17) |> Enum.take(2)
+      iex> NervesDHT.stream(:am2302, 17) |> Enum.take(2)
       [{:ok, 55.1, 24.719}, {:ok, 55.12, 24.9}]
 
   """

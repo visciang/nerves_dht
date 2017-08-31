@@ -1,4 +1,4 @@
-defmodule DHT.Mixfile do
+defmodule NervesDHT.Mixfile do
   use Mix.Project
 
   def project do
