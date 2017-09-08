@@ -5,7 +5,7 @@ defmodule NervesDHT.Mixfile do
     [
       app: :nerves_dht,
       version: "1.0.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       compilers: [:elixir_make] ++ Mix.compilers,
       deps: deps(),
@@ -14,7 +14,11 @@ defmodule NervesDHT.Mixfile do
   end
 
   def application do
-    []
+    if Mix.env == :test do
+      [extra_applications: [:logger]]
+    else
+      []
+    end
   end
 
   defp deps do
