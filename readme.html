@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.16.3">
+    <title>Nerves DHT – nerves_dht v1.1.0</title>
+    <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
+    
+    <script src="dist/sidebar_items-6366c99e95.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        nerves_dht
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v1.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Nerves DHT</h1>
+<p><a href="https://travis-ci.org/visciang/nerves_dht"><img src="https://travis-ci.org/visciang/nerves_dht.svg?branch=master" alt="Build Status"/></a></p>
+<p>Elixir library to read the DHT series of humidity and temperature sensors on a Raspberry Pi.
+The library is supposed to be included in a <a href="http://nerves-project.org/">nerves project</a>.</p>
+<p>If you want to build your project directly on a Raspberry (not in a crosscompiling nerves project)
+just export <code class="inline">MIX_TARGET</code> environment variable to you mix build.
+Valid values for <code class="inline">MIX_TARGET</code> are <code class="inline">rpi</code>, <code class="inline">rp2</code>, <code class="inline">rp3</code>.</p>
+<ul>
+<li>Supported sensors: DHT11, DHT22, AM2302
+</li>
+<li>Supported boards: Raspberry 1, 2, 3
+</li>
+</ul>
+<p><strong>Note</strong>: the library has no external dependencies and use a C executable to read the sensors data.</p>
+<h2 id="installation" class="section-heading">
+  <a href="#installation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Installation
+</h2>
+
+<p>The package can be installed by adding <code class="inline">nerves_dht</code> to your list of dependencies in <code class="inline">mix.exs</code>:</p>
+<pre><code class="elixir">def deps do
+  [
+    {:nerves_dht, git: &quot;https://github.com/visciang/nerves_dht.git&quot;, tag: &quot;1.1.0&quot;}
+  ]
+end</code></pre>
+<h2 id="usage" class="section-heading">
+  <a href="#usage" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Usage
+</h2>
+
+<pre><code class="elixir">iex&gt; NervesDHT.read(:am2302, 17)
+{:ok, 55.1, 24.719}
+
+iex&gt; NervesDHT.stream(:am2302, 17) |&gt; Enum.take(2)
+[{:ok, 55.1, 24.719}, {:ok, 55.12, 24.9}]</code></pre>
+<p>If you plan to read concurrently from the sensor, add <a href="NervesDHT.html"><code class="inline">NervesDHT</code></a> to your application supervisor tree:</p>
+<pre><code class="elixir">children = [
+  {NervesDHT, [name: :my_sensor, sensor: :am2302, pin: 17]},
+  ...
+]
+Supervisor.start_link(children, strategy: :one_for_one)</code></pre>
+<p>and read with:</p>
+<pre><code class="elixir">NervesDHT.device_read(:my_sensor)
+NervesDHT.device_stream(:my_sensor)</code></pre>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.16.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-da04b39d0c.js"></script>
+  
+  </body>
+</html>
+

@@ -1,0 +1,718 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.16.3">
+    <title>NervesDHT – nerves_dht v1.1.0</title>
+    <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
+    
+    <script src="dist/sidebar_items-6366c99e95.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        nerves_dht
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v1.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">nerves_dht v1.1.0</small>
+        NervesDHT
+        
+          <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+        
+      </h1>
+
+      
+        <section id="moduledoc">
+          <p>Elixir library to read the DHT series of humidity and temperature sensors on a Raspberry Pi.</p>
+<p>The library expose direct access to the sensors via <a href="#read/4"><code class="inline">read/4</code></a> and <a href="#stream/3"><code class="inline">stream/3</code></a>.</p>
+<p>If your application has multiple processes reading the same sensor concurrently you should
+add <a href="NervesDHT.html#content"><code class="inline">NervesDHT</code></a> under your supervisor (see <a href="#child_spec/1"><code class="inline">child_spec/1</code></a>).
+It ensures that only one read operation at the time is executed.
+In case of multiple sources asking for a read while the operation is in progress, they will
+get the result of the ongoing read.</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+          
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:delay/0">delay()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Delay between reading retries in [ms]</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:device_id/0">device_id()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Device identifier</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:interval/0">interval()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Streaming period in [ms]</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:pin/0">pin()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>GPIO pin (using BCM numbering)</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:reason/0">reason()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Error reason</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:result/0">result()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Reading result</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:retries/0">retries()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Number of retries on transient errors</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:sensor/0">sensor()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Sensor model</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#child_spec/1">child_spec(list)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Return the child specification to put the a named device under your supervisor tree.
+The device can be used to read concurrently from the sensor</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#device_read/1">device_read(device_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Read DHT sensor values from the named device <code class="inline">device_id</code>.
+The underlying read/4 operation will apply the default <code class="inline">retries</code>, <code class="inline">delay</code> strategy</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#device_stream/2">device_stream(device_id, interval \\ 2000)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Return a Stream of sensor readings from the named device <code class="inline">device_id</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read/4">read(sensor, pin, retries \\ 3, delay \\ 2000)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Read DHT sensor values</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#stream/3">stream(sensor, pin, interval \\ 2000)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Return a Stream of sensor readings</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+        </section>
+      
+
+      
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div class="detail" id="t:delay/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:delay/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">delay()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L23" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>delay() :: non_neg_integer</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Delay between reading retries in [ms]</p>
+
+  </section>
+</div>
+<div class="detail" id="t:device_id/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:device_id/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">device_id()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L15" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>device_id() :: atom</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Device identifier</p>
+
+  </section>
+</div>
+<div class="detail" id="t:interval/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:interval/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">interval()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L25" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>interval() :: non_neg_integer</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Streaming period in [ms]</p>
+
+  </section>
+</div>
+<div class="detail" id="t:pin/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:pin/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">pin()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L19" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>pin() :: 0..31</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>GPIO pin (using BCM numbering)</p>
+
+  </section>
+</div>
+<div class="detail" id="t:reason/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:reason/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">reason()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L27" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>reason() :: :timeout | :checksum | :argument | :gpio</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Error reason</p>
+
+  </section>
+</div>
+<div class="detail" id="t:result/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:result/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">result()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L29" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre><a href="#t:result/0">result</a> ::
+  {:ok, humidity :: float, temperature :: float} |
+  {:error, <a href="#t:reason/0">reason</a>}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Reading result</p>
+
+  </section>
+</div>
+<div class="detail" id="t:retries/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:retries/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">retries()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>retries() :: non_neg_integer</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Number of retries on transient errors</p>
+
+  </section>
+</div>
+<div class="detail" id="t:sensor/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:sensor/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">sensor()</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L17" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>sensor() :: :dht11 | :dht22 | :am2302</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Sensor model</p>
+
+  </section>
+</div>
+
+          </div>
+        </section>
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="child_spec/1">
+  
+  
+  <div class="detail-header">
+    <a href="#child_spec/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">child_spec(list)</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L110" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>child_spec([name: <a href="#t:device_id/0">device_id</a>, sensor: <a href="#t:sensor/0">sensor</a>, pin: <a href="#t:pin/0">pin</a>]) :: <a href="https://hexdocs.pm/elixir/Supervisor.html#t:child_spec/0">Supervisor.child_spec</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Return the child specification to put the a named device under your supervisor tree.
+The device can be used to read concurrently from the sensor.</p>
+<p>Add to you supervisor:</p>
+<pre><code class="elixir">children = [
+  {NervesDHT, [name: :my_sensor, sensor: :am2302, pin: 17]},
+  ...
+]
+Supervisor.start_link(children, strategy: :one_for_one)</code></pre>
+<p>Read from the named <code class="inline">:my_sensor</code> device:</p>
+<pre><code class="elixir">NervesDHT.device_read(:my_sensor)</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="device_read/1">
+  
+  
+  <div class="detail-header">
+    <a href="#device_read/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">device_read(device_id)</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L129" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>device_read(<a href="#t:device_id/0">device_id</a>) :: <a href="#t:result/0">result</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Read DHT sensor values from the named device <code class="inline">device_id</code>.
+The underlying read/4 operation will apply the default <code class="inline">retries</code>, <code class="inline">delay</code> strategy.</p>
+<p>See <a href="#child_spec/1"><code class="inline">child_spec/1</code></a>, <a href="#read/4"><code class="inline">read/4</code></a>.</p>
+
+  </section>
+</div>
+<div class="detail" id="device_stream/2">
+  
+  
+    <span id="device_stream/1"></span>
+  
+  <div class="detail-header">
+    <a href="#device_stream/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">device_stream(device_id, interval \\ 2000)</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L139" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>device_stream(<a href="#t:device_id/0">device_id</a>, <a href="#t:interval/0">interval</a>) :: <a href="https://hexdocs.pm/elixir/Enumerable.html#t:t/0">Enumerable.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Return a Stream of sensor readings from the named device <code class="inline">device_id</code>.</p>
+<p>See <a href="#child_spec/1"><code class="inline">child_spec/1</code></a>, stream/3.</p>
+
+  </section>
+</div>
+<div class="detail" id="read/4">
+  
+  
+    <span id="read/2"></span>
+  
+    <span id="read/3"></span>
+  
+  <div class="detail-header">
+    <a href="#read/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">read(sensor, pin, retries \\ 3, delay \\ 2000)</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L59" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>read(<a href="#t:sensor/0">sensor</a>, <a href="#t:pin/0">pin</a>, <a href="#t:retries/0">retries</a>, <a href="#t:delay/0">delay</a>) :: <a href="#t:result/0">result</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Read DHT sensor values.</p>
+<p>Read from the specified <code class="inline">sensor</code> type (DHT11, DHT22, or AM2302) on
+specified <code class="inline">pin</code> and return humidity (as a floating point value in
+percent) and temperature (as a floating point value in Celsius) as
+a tuple <code class="inline">{:ok, humidity, temperature}</code>.</p>
+<p>Note that because the sensor requires strict timing to read and Linux is
+not a real time OS, a result is not guaranteed to be returned! The function
+will attempt to read multiple times (up to the specified max <code class="inline">retries</code>+1) until
+a good reading can be found. If a good reading cannot be found after the
+amount of retries the function returns {:error, :timeout}. The delay between
+retries is by default 2 seconds, but can be overridden (also note the DHT
+sensor cannot be read faster than about once every 2 seconds).</p>
+<h2 id="read/4-examples" class="section-heading">
+  <a href="#read/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; NervesDHT.read(:am2302, 17)
+{:ok, 55.1, 24.719}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="stream/3">
+  
+  
+    <span id="stream/2"></span>
+  
+  <div class="detail-header">
+    <a href="#stream/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">stream(sensor, pin, interval \\ 2000)</span>
+    
+      <a href="https://github.com/visciang/nerves_dht/blob/master/lib/nerves_dht.ex#L84" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>stream(<a href="#t:sensor/0">sensor</a>, <a href="#t:pin/0">pin</a>, <a href="#t:interval/0">interval</a>) :: <a href="https://hexdocs.pm/elixir/Enumerable.html#t:t/0">Enumerable.t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Return a Stream of sensor readings.</p>
+<p><code class="inline">interval</code> is the wait period beetwen two consecutive read attempts and
+defaults to 2 seconds. Since the device takes some <code class="inline">x</code> time to transmit
+the reading, the Stream will push data with a <code class="inline">period &gt;= (interval + x)</code>.</p>
+<h2 id="stream/3-examples" class="section-heading">
+  <a href="#stream/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; NervesDHT.stream(:am2302, 17) |&gt; Enum.take(2)
+[{:ok, 55.1, 24.719}, {:ok, 55.12, 24.9}]</code></pre>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.16.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-da04b39d0c.js"></script>
+  
+  </body>
+</html>
+
