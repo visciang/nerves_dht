@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/visciang/nerves_dht.svg?branch=master)](https://travis-ci.org/visciang/nerves_dht)
 
+[![Docs](https://img.shields.io/badge/docs-latest-green.svg)](https://visciang.github.io/nerves_dht/readme.html)
+
 Elixir library to read the DHT series of humidity and temperature sensors on a Raspberry Pi.
 The library is supposed to be included in a [nerves project](http://nerves-project.org/).
 
