@@ -10,8 +10,8 @@ defmodule Test.Utils do
     File.rm(@dht_call_count)
   end
 
-  def check_call_counter(count) do
+  def call_counter() do
     data = File.read!(@dht_call_count)
-    ExUnit.Assertions.assert ^data = String.duplicate(".", count)
+    String.length(data)
   end
 end

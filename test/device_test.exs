@@ -6,7 +6,7 @@ defmodule Test.Device do
       device = :test_ok
       {:ok, _pid} = NervesDHT.Device.start_link(device, fn -> :ok! end)
 
-      assert :ok! = NervesDHT.Device.read(device)
+      assert :ok! == NervesDHT.Device.read(device)
     end
 
     test "read timeout" do
@@ -14,7 +14,7 @@ defmodule Test.Device do
       timeout = 200
       {:ok, _pid} = NervesDHT.Device.start_link(device, fn -> Process.sleep(timeout * 2) end, timeout)
 
-      assert {:error, :timeout} = NervesDHT.Device.read(device)
+      assert {:error, :timeout} == NervesDHT.Device.read(device)
     end
 
     @tag :capture_log
