@@ -8,6 +8,7 @@ defmodule NervesDHT.Mixfile do
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       compilers: [:elixir_make] ++ Mix.compilers,
+      test_coverage: [tool: ExCoveralls],
       deps: deps(),
       docs: docs()
     ]
@@ -25,6 +26,7 @@ defmodule NervesDHT.Mixfile do
     [
       {:elixir_make, "~> 0.4", runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.7.3", only: :test},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false}
     ]
   end

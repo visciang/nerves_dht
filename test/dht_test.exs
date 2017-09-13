@@ -98,9 +98,7 @@ defmodule Test.Supervised do
   end
 
   test "device_stream" do
-    interval = 0
-
     Utils.set_sensor_response("40.1", "20.1", "0")
-    assert [{:ok, 40.1, 20.1}] = DHT.stream(:am2302, 17, interval) |> Enum.take(1)
+    assert [{:ok, 40.1, 20.1}] = DHT.device_stream(:test_sensor) |> Enum.take(1)
   end
 end
