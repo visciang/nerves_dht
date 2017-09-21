@@ -21,7 +21,7 @@ The package can be installed by adding `nerves_dht` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:nerves_dht, git: "https://github.com/visciang/nerves_dht.git", tag: "1.1.0"}
+    {:nerves_dht, git: "https://github.com/visciang/nerves_dht.git", tag: "xxx"}
   ]
 end
 ```
