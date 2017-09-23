@@ -121,7 +121,7 @@ defmodule NervesDHT do
 
   @doc """
   Read DHT sensor values from the named device `device_id`.
-  The underlying read/4 operation will apply the default `retries`, `delay` strategy.
+  The underlying `read/4` operation will apply the default `retries`, `delay` strategy.
 
   See `child_spec/1`, `read/4`.
   """
