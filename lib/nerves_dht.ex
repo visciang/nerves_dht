@@ -112,7 +112,7 @@ defmodule NervesDHT do
     timeout = @retries * @delay
     %{
       id: "#{__MODULE__}_#{sensor}_#{pin}",
-      start: {NervesDHT.Device, :start_link, [name, fun, timeout]},
+      start: {NervesSAD, :start_link, [name, fun, timeout]},
       restart: :permanent,
       shutdown: 5000,
       type: :worker
@@ -127,7 +127,7 @@ defmodule NervesDHT do
   """
   @spec device_read(device_id) :: result
   def device_read(device_id) do
-    NervesDHT.Device.read(device_id, (@retries + 1) * @delay)
+    NervesSAD.read(device_id, (@retries + 1) * @delay)
   end
 
   @doc """
