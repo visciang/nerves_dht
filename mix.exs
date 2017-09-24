@@ -24,7 +24,7 @@ defmodule NervesDHT.Mixfile do
 
   defp deps do
     [
-      {:nerves_sad, git: "https://github.com/visciang/nerves_sad.git", tag: "1.0.1"},
+      {:nerves_sad, git: "https://github.com/visciang/nerves_sad.git", tag: "1.1.0"},
       {:elixir_make, "~> 0.4", runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
       {:excoveralls, "~> 0.7.3", only: :test},

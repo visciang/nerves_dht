@@ -127,7 +127,7 @@ defmodule NervesDHT do
   """
   @spec device_read(device_id) :: result
   def device_read(device_id) do
-    NervesSAD.read(device_id, (@retries + 1) * @delay)
+    NervesSAD.read(device_id)
   end
 
   @doc """
