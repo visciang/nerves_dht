@@ -82,8 +82,7 @@ defmodule NervesDHT do
   """
   @spec stream(sensor, pin, interval) :: Enumerable.t
   def stream(sensor, pin, interval \\ @delay) do
-    Stream.interval(interval)
-    |> Stream.map(fn(_) -> read(sensor, pin, 0, 0) end)
+    Stream.repeatedly(fn -> Process.sleep(interval); read(sensor, pin, 0, 0) end)
   end
 
   @doc """
