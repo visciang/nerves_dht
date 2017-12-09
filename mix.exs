@@ -4,7 +4,7 @@ defmodule NervesDHT.Mixfile do
   def project do
     [
       app: :nerves_dht,
-      version: "1.1.2",
+      version: "1.1.3",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       compilers: [:elixir_make] ++ Mix.compilers,
@@ -27,8 +27,8 @@ defmodule NervesDHT.Mixfile do
       {:nerves_sad, git: "https://github.com/visciang/nerves_sad.git", tag: "1.1.0"},
       {:elixir_make, "~> 0.4", runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.7.3", only: :test},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
+      {:excoveralls, "~> 0.7.5", only: :test},
+      {:ex_doc, "~> 0.18", only: :dev, runtime: false}
     ]
   end
 
