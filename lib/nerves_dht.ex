@@ -86,7 +86,7 @@ defmodule NervesDHT do
   end
 
   @doc """
-  Return the child specification to put the a named device under your supervisor tree.
+  Return the child specification to put a named device under your supervisor tree.
   The device can be used to read concurrently from the sensor.
 
   Add to you supervisor:
