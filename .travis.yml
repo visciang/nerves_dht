@@ -12,5 +12,4 @@ matrix:
     - otp_release: 20.0
       elixir: 1.6
 
-before_script: mix deps.get
 script: mix coveralls.travis
