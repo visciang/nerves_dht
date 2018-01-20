@@ -13,7 +13,7 @@ defmodule Test.DirectAccess do
     test "read errors code" do
       Enum.each(
         [{"252", :gpio}, {"253", :argument}, {"254", :checksum}, {"255", :timeout}],
-        fn ({exit_status, exit_reason}) ->
+        fn {exit_status, exit_reason} ->
           Utils.set_sensor_response("", "", exit_status)
           assert {:error, exit_reason} == DHT.read(:dht11, 17, 0)
         end
@@ -46,11 +46,11 @@ defmodule Test.DirectAccess do
       Utils.set_sensor_response("", "", "255")
       start_time = System.monotonic_time(:milliseconds)
       assert {:error, :timeout} == DHT.read(:dht11, 17, retries, interval)
-      end_time  = System.monotonic_time(:milliseconds)
+      end_time = System.monotonic_time(:milliseconds)
 
       elapsed_time = end_time - start_time
 
-      assert elapsed_time >= (interval * (retries))
+      assert elapsed_time >= interval * retries
     end
   end
 
@@ -70,11 +70,11 @@ defmodule Test.DirectAccess do
       expected = List.duplicate({:ok, 55.1, 24.719}, take)
       start_time = System.monotonic_time(:milliseconds)
       assert expected == DHT.stream(:am2302, 17, interval) |> Enum.take(take)
-      end_time  = System.monotonic_time(:milliseconds)
+      end_time = System.monotonic_time(:milliseconds)
 
       elapsed_time = end_time - start_time
 
-      assert elapsed_time >= (interval * (take))
+      assert elapsed_time >= interval * take
     end
   end
 end

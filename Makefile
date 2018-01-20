@@ -13,33 +13,33 @@ CFLAGS := $(CFLAGS) -std=gnu99 -O2 -Wall
 
 # Check that we're on a supported build platform
 ifeq ($(CROSSCOMPILE),)
-# Not crosscompiling, so check that we're on Linux.
-ifneq ($(shell uname -s),Linux)
-$(warning dht only works on Linux on a Raspberry Pi. Crosscompilation)
-$(warning is supported by defining at least $$CROSSCOMPILE and $$MIX_TARGET.)
-$(warning See Makefile for details. If using Nerves, this should be done automatically.)
-$(warning )
-$(warning Skipping C compilation unless targets explicitly passed to make.)
-DEFAULT_TARGETS = priv
-endif
+    # Not crosscompiling, so check that we're on Linux.
+    ifneq ($(shell uname -s),Linux)
+        $(warning dht only works on Linux on a Raspberry Pi. Crosscompilation)
+        $(warning is supported by defining at least $$CROSSCOMPILE and $$MIX_TARGET.)
+        $(warning See Makefile for details. If using Nerves, this should be done automatically.)
+        $(warning )
+        $(warning Skipping C compilation unless targets explicitly passed to make.)
+        DEFAULT_TARGETS = priv
+    endif
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
 ifeq ($(TRAVIS),true)
-$(warning TRAVIS build)
-DEFAULT_TARGETS = priv
+    $(warning TRAVIS build)
+    DEFAULT_TARGETS = priv
 endif
 
 # Rasperry Platfrom
 CFLAGS := $(CFLAGS) -D$(MIX_TARGET)
 ifeq ($(MIX_TARGET),rpi)
-SRC = $(wildcard src/*.c src/rpi/*.c)
+    SRC = $(wildcard src/*.c src/rpi/*.c)
 endif
 ifeq ($(MIX_TARGET),rpi2)
-SRC = $(wildcard src/*.c src/rpi2/*.c)
+    SRC = $(wildcard src/*.c src/rpi2/*.c)
 endif
 ifeq ($(MIX_TARGET),rpi3)
-SRC = $(wildcard src/*.c src/rpi2/*.c)
+    SRC = $(wildcard src/*.c src/rpi2/*.c)
 endif
 SRC ?=
 

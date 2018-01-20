@@ -62,6 +62,7 @@ defmodule NervesDHT do
     case result do
       {:ok, humidity, temperature} ->
         {:ok, humidity, temperature}
+
       {:error, error} ->
         read_again(sensor, pin, retries, delay, error)
     end
@@ -80,9 +81,12 @@ defmodule NervesDHT do
       [{:ok, 55.1, 24.719}, {:ok, 55.12, 24.9}]
 
   """
-  @spec stream(sensor, pin, interval) :: Enumerable.t
+  @spec stream(sensor, pin, interval) :: Enumerable.t()
   def stream(sensor, pin, interval \\ @delay) do
-    Stream.repeatedly(fn -> Process.sleep(interval); read(sensor, pin, 0, 0) end)
+    Stream.repeatedly(fn ->
+      Process.sleep(interval)
+      read(sensor, pin, 0, 0)
+    end)
   end
 
   @doc """
@@ -105,10 +109,11 @@ defmodule NervesDHT do
   NervesDHT.device_read(:my_sensor)
   ```
   """
-  @spec child_spec([name: device_id, sensor: sensor, pin: pin]) :: Supervisor.child_spec
-  def child_spec([name: name, sensor: sensor, pin: pin]) do
+  @spec child_spec(name: device_id, sensor: sensor, pin: pin) :: Supervisor.child_spec()
+  def child_spec(name: name, sensor: sensor, pin: pin) do
     fun = fn -> __MODULE__.read(sensor, pin) end
     timeout = @retries * @delay
+
     %{
       id: "#{__MODULE__}_#{sensor}_#{pin}",
       start: {NervesSAD, :start_link, [name, fun, timeout]},
@@ -134,10 +139,10 @@ defmodule NervesDHT do
 
   See `child_spec/1`, stream/3.
   """
-  @spec device_stream(device_id, interval) :: Enumerable.t
+  @spec device_stream(device_id, interval) :: Enumerable.t()
   def device_stream(device_id, interval \\ @delay) do
     Stream.interval(interval)
-    |> Stream.map(fn(_) -> device_read(device_id) end)
+    |> Stream.map(fn _ -> device_read(device_id) end)
   end
 
   defp read_again(_sensor, _pin, retries, _delay, error) when retries <= 0 do

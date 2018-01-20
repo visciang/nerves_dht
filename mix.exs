@@ -6,8 +6,8 @@ defmodule NervesDHT.Mixfile do
       app: :nerves_dht,
       version: "1.1.3",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
-      compilers: [:elixir_make] ++ Mix.compilers,
+      start_permanent: Mix.env() == :prod,
+      compilers: [:elixir_make] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
       deps: deps(),
       docs: docs()
@@ -15,7 +15,7 @@ defmodule NervesDHT.Mixfile do
   end
 
   def application do
-    if Mix.env == :test do
+    if Mix.env() == :test do
       [extra_applications: [:logger]]
     else
       []
@@ -35,7 +35,7 @@ defmodule NervesDHT.Mixfile do
   defp docs do
     [
       source_url: "https://github.com/visciang/nerves_dht",
-      extras: ["README.md"],
+      extras: ["README.md"]
     ]
   end
 end
