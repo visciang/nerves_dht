@@ -27,7 +27,7 @@ defmodule NervesDHT.Mixfile do
       {:nerves_sad, git: "https://github.com/visciang/nerves_sad.git", tag: "1.1.1"},
       {:elixir_make, "~> 0.4", runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.9.0", only: :test},
+      {:excoveralls, "~> 0.11.0", only: :test},
       {:ex_doc, "~> 0.18", only: :dev, runtime: false}
     ]
   end
