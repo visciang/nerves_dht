@@ -29,7 +29,6 @@
 #define MMIO_SUCCESS 0
 #define MMIO_ERROR_DEVMEM -1
 #define MMIO_ERROR_MMAP -2
-#define MMIO_ERROR_OFFSET -3
 
 extern volatile uint32_t* pi_0_mmio_gpio;
 
