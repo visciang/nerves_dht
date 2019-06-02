@@ -35,6 +35,9 @@ CFLAGS := $(CFLAGS) -D$(MIX_TARGET)
 ifeq ($(MIX_TARGET),rpi)
     SRC = $(wildcard src/*.c src/rpi/*.c)
 endif
+ifeq ($(MIX_TARGET),rpi0)
+    SRC = $(wildcard src/*.c src/rpi0/*.c)
+endif
 ifeq ($(MIX_TARGET),rpi2)
     SRC = $(wildcard src/*.c src/rpi2/*.c)
 endif
