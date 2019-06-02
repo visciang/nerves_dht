@@ -1,4 +1,5 @@
 # App artifacts
+.vscode
 /_build
 /doc
 /db
