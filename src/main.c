@@ -4,7 +4,7 @@
 #if defined(rpi)
 #  include "rpi/pi_dht_read.h"
 #  define PHT_READ pi_dht_read
-#elif defined(rpi2) || defined(rpi3)
+#elif defined(rpi2)
 #  include "rpi2/pi_2_dht_read.h"
 #  define PHT_READ pi_2_dht_read
 #elif defined(rpi3)
