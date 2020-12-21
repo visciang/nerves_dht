@@ -1,10 +1,10 @@
 # App artifacts
-.vscode
 /_build
 /doc
 /db
 /deps
 /*.ez
+/priv/dht
 
 # Ignore executable and object files
 *.o
@@ -15,5 +15,3 @@
 
 # Generate on crash by the VM
 erl_crash.dump
-
-/priv

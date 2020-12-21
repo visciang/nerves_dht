@@ -4,14 +4,8 @@
 #if defined(rpi)
 #  include "rpi/pi_dht_read.h"
 #  define PHT_READ pi_dht_read
-#elif defined(rpi2)
+#elif defined(rpi2) || defined(rpi3) || defined(rpi4)
 #  include "rpi2/pi_2_dht_read.h"
-#  define PHT_READ pi_2_dht_read
-#elif defined(rpi3)
-#  include "rpi3/pi_2_dht_read.h"
-#  define PHT_READ pi_2_dht_read
-#elif defined(rpi4)
-#  include "rpi4/pi_2_dht_read.h"
 #  define PHT_READ pi_2_dht_read
 #elif defined(rpi0)
 #  include "rpi0/pi_0_dht_read.h"
