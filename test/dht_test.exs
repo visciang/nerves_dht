@@ -44,9 +44,9 @@ defmodule Test.DirectAccess do
       retries = 3
 
       Utils.set_sensor_response("", "", "255")
-      start_time = System.monotonic_time(:milliseconds)
+      start_time = System.monotonic_time(:millisecond)
       assert {:error, :timeout} == DHT.read(:dht11, 17, retries, interval)
-      end_time = System.monotonic_time(:milliseconds)
+      end_time = System.monotonic_time(:millisecond)
 
       elapsed_time = end_time - start_time
 
@@ -68,9 +68,9 @@ defmodule Test.DirectAccess do
 
       Utils.set_sensor_response("55.1", "24.719", "0")
       expected = List.duplicate({:ok, 55.1, 24.719}, take)
-      start_time = System.monotonic_time(:milliseconds)
+      start_time = System.monotonic_time(:millisecond)
       assert expected == DHT.stream(:am2302, 17, interval) |> Enum.take(take)
-      end_time = System.monotonic_time(:milliseconds)
+      end_time = System.monotonic_time(:millisecond)
 
       elapsed_time = end_time - start_time
 

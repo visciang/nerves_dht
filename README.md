@@ -7,10 +7,10 @@ The library is supposed to be included in a [nerves project](http://nerves-proje
 
 If you want to build your project directly on a Raspberry (not in a crosscompiling nerves project)
 just export `MIX_TARGET` environment variable to you mix build.
-Valid values for `MIX_TARGET` are `rpi`, `rp2`, `rp3`.
+Valid values for `MIX_TARGET` are `rpi`, `rp0`, `rp2`, `rp3`, `rp4`.
 
 * Supported sensors: DHT11, DHT22, AM2302
-* Supported boards: Raspberry 1, 2, 3
+* Supported boards: Raspberry 0, 1, 2, 3, 4
 
 **Note**: the library has no external dependencies and use a C executable to read the sensors data.
 
@@ -51,4 +51,12 @@ and read with:
 ```elixir
 NervesDHT.device_read(:my_sensor)
 NervesDHT.device_stream(:my_sensor)
+```
+
+## Test
+
+```sh
+$ export CI=true    # to build on a non RPI-nerves host
+$ mix compile --warnings-as-errors
+$ mix coveralls
 ```
