@@ -4,6 +4,7 @@
 /db
 /deps
 /*.ez
+/priv/dht
 
 # Ignore executable and object files
 *.o

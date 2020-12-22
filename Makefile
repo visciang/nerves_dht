@@ -25,20 +25,26 @@ ifeq ($(CROSSCOMPILE),)
 endif
 DEFAULT_TARGETS ?= priv priv/dht
 
-ifeq ($(TRAVIS),true)
-    $(warning TRAVIS build)
+ifeq ($(CI),true)
+    $(warning CI build)
     DEFAULT_TARGETS = priv
 endif
 
-# Rasperry Platfrom
+# Raspberry Platform
 CFLAGS := $(CFLAGS) -D$(MIX_TARGET)
 ifeq ($(MIX_TARGET),rpi)
     SRC = $(wildcard src/*.c src/rpi/*.c)
+endif
+ifeq ($(MIX_TARGET),rpi0)
+    SRC = $(wildcard src/*.c src/rpi0/*.c)
 endif
 ifeq ($(MIX_TARGET),rpi2)
     SRC = $(wildcard src/*.c src/rpi2/*.c)
 endif
 ifeq ($(MIX_TARGET),rpi3)
+    SRC = $(wildcard src/*.c src/rpi2/*.c)
+endif
+ifeq ($(MIX_TARGET),rpi4)
     SRC = $(wildcard src/*.c src/rpi2/*.c)
 endif
 SRC ?=
