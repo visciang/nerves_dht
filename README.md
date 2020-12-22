@@ -1,6 +1,6 @@
 # Nerves DHT
 
-![CI](https://github.com/visciang/nerves_dht/workflows/CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/nerves_dht/nerves_dht/badge.svg?branch=master)](https://coveralls.io/github/visciang/nerves_dht?branch=master)
+![CI](https://github.com/visciang/nerves_dht/workflows/CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/visciang/nerves_dht/badge.svg?branch=master)](https://coveralls.io/github/visciang/nerves_dht?branch=master)
 
 Elixir library to read the DHT series of humidity and temperature sensors on a Raspberry Pi.
 The library is supposed to be included in a [nerves project](http://nerves-project.org/).
