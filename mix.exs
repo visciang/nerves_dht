@@ -5,10 +5,11 @@ defmodule NervesDHT.Mixfile do
     [
       app: :nerves_dht,
       version: "1.2.0",
-      elixir: "~> 1.6",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       preferred_cli_env: [
-        coveralls: :test
+        coveralls: :test,
+        "coveralls.github": :test
       ],
       compilers: [:elixir_make] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
