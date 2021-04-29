@@ -6,8 +6,3 @@ updates:
     interval: daily
     time: "07:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: ex_doc
-    versions:
-    - 0.24.0
-    - 0.24.1
